@@ -9,7 +9,7 @@ if coll == "bn":
     nrange = range(2037, 2103)
     base = "BiographieNationaleTome"
 elif coll == "nbn":
-    nrange = range(2103, 2120)
+    nrange = range(2103, 2112)
     base = "NouvelleBiographieNational"
 else:
     print("Unknown collection")
@@ -23,3 +23,9 @@ for n in nrange:
             f.write(r.content)
     else:
         print(f"{n}: {r.status_code}")
+
+if coll == "nbn": # handle extra file
+    url = "https://www.academieroyale.be/Academie/documents/ALBIMOORWilly18211.pdf"
+    r = requests.get(url)
+    with open(f"data/nbn/2112.pdf", "wb") as f:
+        f.write(r.content)
